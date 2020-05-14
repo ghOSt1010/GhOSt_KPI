@@ -105,13 +105,16 @@ class UIManager {
    static setCurrentView(view) {
       localStorage.setItem('view', view);
    }
+
    static getCurrentView() {
-      let v = localStorage.getItem('view');
-      if (v == null) {
-         var _v = window.location.pathname.toString();
-         _v = _v.slice(1, _v.length);
-         return _v.toLocaleLowerCase();
+      let view = localStorage.getItem('view');
+      if (view == null && window.location.hash) {
+         view = window.location.hash.slice(2);
       }
+      if (view == null) {
+         view = window.location.pathname.toString().slice(1);
+      }
+      return view.toLocaleLowerCase();
    }
 }
 

@@ -84,11 +84,14 @@ dark-background: #363538
 }
 
 .bg-selected {
-   background-color: rgba(19, 124, 189, 0.3);
+   background-color: #106ba3;
    border-radius: 6px;
 }
+.bp3-body tr.bg-selected td {
+   color: white;
+}
 .bp3-dark .bg-selected {
-   background-color: rgba(19, 124, 189, 0.3);
+   background-color: #48aff0;
 }
 
 .bg-blur {
@@ -2145,6 +2148,11 @@ a.bp3-button.bp3-disabled {
    @start
    card > hr
 */
+.bp3-card-header-no-border {
+   height: 30px;
+   border-radius: 6px 6px 0 0;
+   margin-bottom: 2px;
+}
 .bp3-card-header {
    height: 30px;
    border-radius: 6px 6px 0 0;
@@ -2175,6 +2183,11 @@ a.bp3-button.bp3-disabled {
 .bp3-border-collapsed {
    border-radius: 6px;
    border-bottom: none;
+}
+
+.bp3-header-controlls {
+   float: right;
+   margin-top: -3px;
 }
 
 .bp3-card-body {
@@ -6239,7 +6252,7 @@ table.bp3-html-table.bp3-interactive tbody tr:active td {
 /*
    @overwrite
    @added
-   @go
+   @width
 */
 table.bp3-html-table {
    /*background-color: #ffffff;*/
@@ -6285,7 +6298,7 @@ table.bp3-html-table {
 .bp3-html-table th,
 .bp3-html-table td {
    flex-basis: 100%;
-   flex-grow: 2;
+   /*flex-grow: 1;*/
    min-width: 12%;
    overflow: hidden;
    display: block;
@@ -6293,25 +6306,6 @@ table.bp3-html-table {
    text-align: left;
 }
 
-/*
-.bp3-html-table thead tr th {
-   background-color: #ffffff;
-   position: sticky;
-   top: 0;
-}
-
-.bp3-html-table thead tr th:first-child {
-   border-top-left-radius: 6px;
-}
-
-.bp3-html-table thead tr th:last-child {
-   border-top-right-radius: 6px;
-}
-
-.bp3-dark .bp3-html-table thead tr th {
-   background-color: var(--dark-gray4);;
-}
-*/
 /*
    @overwrite end
 */

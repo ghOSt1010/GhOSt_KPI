@@ -13,37 +13,42 @@ export default class Notifications {
    static success(message) {
       doToast.show({
          message: message,
-         intent: 'success',
-         icon: 'tick'
+         intent: 'none',
+         icon: 'tick',
+         className: 'border border-success'
       });
    }
    static alert(message) {
       doToast.show({
          message: message,
-         intent: 'warning',
-         icon: 'warning-sign'
+         intent: 'none',
+         icon: 'warning-sign',
+         className: 'border border-warning'
       });
    }
    static failure(message) {
       doToast.show({
          message: message,
-         intent: 'danger',
-         icon: 'delete'
+         intent: 'none',
+         icon: 'delete',
+         className: 'border border-danger'
       });
    }
    static error(message) {
       doToast.show({
          message: message,
-         intent: 'danger',
-         icon: 'issue'
+         intent: 'none',
+         icon: 'issue',
+         className: 'border border-danger'
       });
    }
-   static custom(message, intent, icon, timeout) {
+   static custom(message, intent, icon, timeout, class_name) {
       doToast.show({
          message: message,
          intent: intent,
          icon: icon,
-         timeout: timeout
+         timeout: timeout,
+         className: class_name
       });
    }
 }
