@@ -156,7 +156,7 @@ export default class AppSideBar extends Component {
                   onClick={() => this.changeSelection('settings')}
                />
             </div>
-            {this.bottomControlls(false)}
+            {this.bottomControlls(true)}
          </Sidebar>
       );
    }

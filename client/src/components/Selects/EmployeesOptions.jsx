@@ -6,7 +6,7 @@ export default class EmployeesOptions extends Component {
    state = {
       options: [],
       isLoading: true,
-      option: ''
+      option: '',
    };
    componentDidMount() {
       this.getOptions();
@@ -16,7 +16,7 @@ export default class EmployeesOptions extends Component {
          this.setLoading(true);
          var result = await Client.Services.EmployeesService.getEmployees();
          this.setState({
-            options: result.data
+            options: result.data,
          });
       } catch (err) {
          this.setState({ options: new Array('N/A'), option: 'N/A' });
@@ -61,8 +61,15 @@ export default class EmployeesOptions extends Component {
             disabled={this.props.disabled}
             fill={this.props.fill}
             value={this.props.selected}
+            iconProps={this.props.iconProps}
+            large={this.props.large}
+            minimal={this.props.minimal}
          >
-            <option selected hidden disabled>
+            <option
+               selected={this.props.placeholder ? true : false}
+               hidden
+               disabled
+            >
                {this.props.placeholder}
             </option>
             {this.renderOptions()}

@@ -5,14 +5,14 @@ import {
    NonIdealState,
    H5,
    Spinner,
-   Classes
+   Classes,
 } from '@blueprintjs/core';
 
 import TableHeaders from './TableHeaders';
 
 export default class Table extends Component {
    state = {
-      errorMsg: ''
+      errorMsg: '',
    };
    renderTableHeader() {
       return <TableHeaders headers={this.props.headers} />;
@@ -38,16 +38,17 @@ export default class Table extends Component {
                   onClick={() => {
                      this.props.onRefresh();
                      this.setState({
-                        errorMsg: ''
+                        errorMsg: '',
                      });
                   }}
-               ></Button>
+               />
             </NonIdealState>
          </div>
       );
    }
 
    renderContent() {
+      const { striped } = this.props;
       if (this.props.errorMsg) {
          this.renderNonIdealState('Something went wrong', 'Cannot load table');
       }
@@ -59,7 +60,7 @@ export default class Table extends Component {
       return (
          <HTMLTable
             fill='true'
-            striped={true}
+            striped={striped ? striped : true}
             condensed
             interactive
             className={this.props.className}
@@ -74,7 +75,7 @@ export default class Table extends Component {
       const { isLoading } = this.props;
 
       if (isLoading) {
-         return <Spinner intent='primary'></Spinner>;
+         return <Spinner intent='primary' />;
       }
       return this.renderContent();
    }
@@ -84,5 +85,5 @@ Table.defaultProps = {
    rows: [],
    onRefresh: function() {
       return;
-   }
+   },
 };

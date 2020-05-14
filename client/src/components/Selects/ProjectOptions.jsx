@@ -6,7 +6,7 @@ export default class ProjectOptions extends Component {
    state = {
       options: [],
       isLoading: true,
-      option: ''
+      option: '',
    };
    componentDidMount() {
       this.getOptions();
@@ -16,7 +16,7 @@ export default class ProjectOptions extends Component {
          this.setLoading(true);
          var result = await Client.Services.ProjectsService.getProjects();
          this.setState({
-            options: result.data
+            options: result.data,
          });
       } catch (err) {
          this.setState({ options: new Array('N/A'), option: 'N/A' });
@@ -62,9 +62,16 @@ export default class ProjectOptions extends Component {
             disabled={this.props.disabled}
             fill={this.props.fill ? this.props.fill : true}
             value={this.props.selected}
+            iconProps={this.props.iconProps}
+            large={this.props.large}
+            minimal={this.props.minimal}
          >
-            <option selected hidden disabled>
-               {this.props.placeholder}
+            <option
+               selected={this.props.placeholder ? true : false}
+               hidden
+               disabled
+            >
+               {this.props.placeholder ? this.props.placeholder : ''}
             </option>
             {this.renderOptions()}
          </HTMLSelect>

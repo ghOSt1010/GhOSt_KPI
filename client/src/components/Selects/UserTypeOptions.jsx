@@ -4,7 +4,7 @@ import { HTMLSelect } from '@blueprintjs/core';
 export default class UserTypesOptions extends Component {
    state = {
       roles: ['standard', 'manager', 'director', 'admin'],
-      usertype: this.props.usertype
+      usertype: this.props.usertype,
    };
 
    renderOptions() {
@@ -39,6 +39,9 @@ export default class UserTypesOptions extends Component {
             fill={this.props.fill}
             selected={this.props.selected}
             value={this.props.selected}
+            iconProps={this.props.iconProps}
+            large={this.props.large}
+            minimal={this.props.minimal}
          >
             {this.renderPlaceholder()}
             {this.renderOptions()}
@@ -48,5 +51,5 @@ export default class UserTypesOptions extends Component {
 }
 UserTypesOptions.defaultProps = {
    placeholder: null,
-   usertype: 'standard'
+   usertype: 'standard',
 };

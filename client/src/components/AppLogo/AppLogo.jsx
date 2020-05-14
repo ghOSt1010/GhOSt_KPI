@@ -6,9 +6,11 @@ export default class AppLogo extends Component {
       return (
          <div
             style={{
+               display: 'flex',
                left: 0,
                width: 39,
                height: 40,
+               fontSize: 16,
             }}
          >
             <div className='side-bar-logo bp3-fill app-logo'>

@@ -12,7 +12,7 @@ export default class TableControllers extends Component {
          onRefresh,
       } = this.props;
       return (
-         <div className='bp3-tab-controlls'>
+         <div className={this.props.inHeader ? '' : 'bp3-tab-controlls'}>
             <ButtonGroup>{this.props.children}</ButtonGroup>
             <ButtonGroup>
                <Button

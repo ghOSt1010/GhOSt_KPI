@@ -30,8 +30,12 @@ export default class ReportsTable extends Component {
                   this.state.selected._id === report._id ? 'bg-selected' : ''
                }`}
             >
-               <TableCell value={report.kpi.project.name} />
-               <TableCell value={report.kpi.name} />
+               <TableCell
+                  value={report.kpi != null ? report.kpi.project.name : 'N/A'}
+               />
+               <TableCell
+                  value={report.kpi != null ? report.kpi.name : 'N/A'}
+               />
                <TableCell value={report.reportedBy.name} />
                <TableCell value={report.result} center />
                <TableCell
