@@ -53,7 +53,7 @@ app.use(
       secret: 'passport-tutorial',
       cookie: { maxAge: 60000 },
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
    })
 );
 
@@ -74,6 +74,7 @@ app.use((req, res, next) => {
    }
    next(); //so that other routes can take over
 });
+
 /**
  *    App Error handeling
  */
@@ -92,12 +93,12 @@ if (!isProduction) {
 const localDb = 'mongodb://localhost:27017/ghost_kpi_app';
 const AtlasDB = 'mongodb+srv://user:user@db0-sxgcb.mongodb.net/ghost_kpi_app';
 
-var dbURL = AtlasDB;
+var dbURL = localDb;
 mongoose
    .connect(dbURL, {
       useCreateIndex: true,
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
    })
    .then(() => {
       logger.status('MongoDB connection', 'ok');
@@ -112,7 +113,6 @@ mongoose
  *    settings for MongoDB Debugging
  */
 mongoose.set('debug', false);
-var db = mongoose.connection;
 
 /**
  *    App Models & Routes
@@ -120,9 +120,9 @@ var db = mongoose.connection;
 require('./models/Users');
 require('./models/Employees');
 require('./models/EmployeesTypes');
+require('./models/Report');
 require('./models/KPIs');
 require('./models/Projects');
-require('./models/Report');
 require('./models/Teams');
 
 /**
