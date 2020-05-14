@@ -1,0 +1,12 @@
+.app-logo {
+   position: absolute;
+   left: 0px;
+   width: 40px;
+   height: 40px;
+   background-color: #ffffff;
+   z-index: 11;
+}
+
+.bp3-dark .app-logo {
+   background-color: #444446;
+}

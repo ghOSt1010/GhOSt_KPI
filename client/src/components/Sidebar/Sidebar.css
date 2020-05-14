@@ -1,0 +1,62 @@
+.side-bar-container {
+   overflow-y: scroll;
+   align-items: center;
+}
+
+.side-bar-group-bottom {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+}
+
+.side-bar-group-center {
+   position: relative;
+   vertical-align: center;
+   max-height: calc(100vh - 183px);
+   overflow: hidden;
+}
+
+.side-bar-logo {
+   width: 100%;
+   height: 40px;
+   align-items: center;
+   text-align: center;
+   padding: 10px;
+}
+
+.side-bar {
+   flex-direction: column;
+   display: flex;
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 50px;
+   overflow: hidden;
+   z-index: 10;
+   /*border-radius: 0px 6px 6px 0px;*/
+   border-right: 1px solid rgba(0, 0, 0, 0.08);
+   transition: width 0.05s linear;
+   -webkit-transition: width 0.05s linear;
+   -webkit-transform: translateZ(0) scale(1, 1);
+
+   -webkit-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+   -moz-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+   border-top: 0px;
+}
+
+/*
+   @moved to main bluepring_custom.css
+*/
+
+.side-bar.bp3-dark {
+   -webkit-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+   -moz-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+}
+.bp3-dark .side-bar {
+   -webkit-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+   -moz-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+}

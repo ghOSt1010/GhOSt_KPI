@@ -1,0 +1,28 @@
+.nav-app-logo {
+   width: 50px;
+   margin: 0px;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
+   height: 50px;
+}
+
+/* Adjusting main navigation group*/
+.adjust-nav-group {
+   margin-left: 10px;
+}
+
+.customNav {
+   padding-left: 40px;
+   height: 40px;
+}
+
+.app-bar {
+   position: absolute;
+   left: 40px;
+   right: 0;
+   width: auto;
+}

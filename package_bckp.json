@@ -1,0 +1,23 @@
+{
+   "name": "ghsot_kpi_app",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "client": "cd client && npm start",
+      "server": "cd server && npm start",
+      "prestart": "cd server && rm ./data/db_start.log  && mongod --quiet --dbpath data/db/ --fork --logpath ./data/db_start.log",
+      "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+      "stop": "cd server && rm ./data/db_shutdown.log && mongo admin --eval 'db.shutdownServer()' > ./data/db_shutdown.log && killall mongod",
+      "poststop": "",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "install-all": "concurrently \"npm install\" \"cd server && npm install\" \"cd client && npm install\""
+   },
+   "keywords": [],
+   "author": "rafal cymbalista",
+   "license": "ISC",
+   "dependencies": {
+      "concurrently": "^4.1.2",
+      "nodemon": "^1.19.4"
+   }
+}

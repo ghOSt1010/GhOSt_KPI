@@ -1,0 +1,150 @@
+.main-container {
+   margin-left: 50px;
+   margin-bottom: 50px;
+}
+
+.bp3-tab-panel .main-container-tab-content {
+   height: calc(100vh - 130px);
+   overflow-y: auto;
+   overflow-x: hidden;
+   margin-top: -18px;
+   padding-top: 10px;
+   margin-left: -20px;
+   padding-left: 20px;
+   margin-right: -20px;
+   padding-right: 20px;
+   padding-bottom: 20px;
+   -webkit-box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.15),
+      0 0 0 rgba(16, 22, 26, 0), 0 0 0 rgba(16, 22, 26, 0);
+   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.15), 0 0 0 rgba(16, 22, 26, 0),
+      0 0 0 rgba(16, 22, 26, 0);
+}
+
+.bp3-dark .bp3-tab-panel .main-container-tab-content {
+   -webkit-box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.4),
+      0 0 0 rgba(16, 22, 26, 0), 0 0 0 rgba(16, 22, 26, 0);
+   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.4), 0 0 0 rgba(16, 22, 26, 0),
+      0 0 0 rgba(16, 22, 26, 0);
+}
+
+.topbar {
+   position: relative;
+   padding-left: 40px;
+   left: 30px;
+   margin-left: 40px;
+}
+
+.main-data-app {
+   position: fixed;
+   height: 100%;
+   right: 0;
+   left: 40px;
+   overflow: hidden;
+   bottom: 0;
+   padding-left: 20px;
+   padding-top: 50px;
+   padding-right: 20px;
+   padding-bottom: 0;
+   z-index: 0;
+}
+.panel-container {
+   position: absolute;
+   left: 20px;
+   right: 20px;
+   top: 100px;
+   bottom: 0;
+   height: inherit;
+
+   overflow: auto;
+   border-radius: 6px;
+}
+.app-view {
+   padding-left: 65px;
+}
+
+.home-view {
+   padding-left: 20px;
+}
+
+.main-data-home {
+   height: 100%;
+   overflow: auto;
+   padding-left: 20px;
+   padding-top: 65px;
+   padding-right: 20px;
+   padding-bottom: 50px;
+   z-index: 0;
+}
+
+.main-data-bg-dark {
+   /*background-color: #282c34;*/
+   /*background-image: linear-gradient(60deg, #41474e 0%, #404c58 100%);*/
+}
+
+.main-data-bg-light {
+   /*background-color: rgb(221, 221, 221);*/
+   /*background-color: #f6f7fbec;*/
+   background-image: linear-gradient(
+      to top,
+      #bfc0c2 0%,
+      #dcdddf 52%,
+      #ebebeb 100%
+   );
+}
+/*
+   old URL: https://imagazine.pl/wp-content/uploads/2018/06/Mojave-Wallpaper-Compilation-hero.jpg'
+   good nature: https://wallpapershome.com/images/pages/pic_h/3945.jpg
+*/
+.bg-image {
+   background-image: url('./backgroundimg//5.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   width: 100%;
+   height: 100vh;
+}
+
+.bp3-dark .bg-image {
+   background-image: url('./backgroundimg//1.jpg');
+}
+
+.bg-animation {
+   color: #fff;
+   background: linear-gradient(-45deg, #eea552, #89e73c, #23a6d5, #23d5a8);
+   background-size: 400% 400%;
+   -webkit-animation: Gradient 15s ease infinite;
+   -moz-animation: Gradient 15s ease infinite;
+   animation: Gradient 15s ease infinite;
+}
+@-webkit-keyframes Gradient {
+   0% {
+      background-position: 0% 50%;
+   }
+   50% {
+      background-position: 100% 50%;
+   }
+   100% {
+      background-position: 0% 50%;
+   }
+}
+@-moz-keyframes Gradient {
+   0% {
+      background-position: 0% 50%;
+   }
+   50% {
+      background-position: 100% 50%;
+   }
+   100% {
+      background-position: 0% 50%;
+   }
+}
+@keyframes Gradient {
+   0% {
+      background-position: 0% 50%;
+   }
+   50% {
+      background-position: 100% 50%;
+   }
+   100% {
+      background-position: 0% 50%;
+   }
+}

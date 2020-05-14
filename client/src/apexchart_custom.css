@@ -1,0 +1,61 @@
+/* APEXCHARTS.JS HACK  */
+.apexcharts-canvas svg {
+   fill: #1e1e1e;
+}
+
+.bp3-dark .apexcharts-canvas svg {
+   fill: #f5f8fa;
+}
+.apexcharts-text {
+   color: #1e1e1e;
+}
+.bp3-dark .apexcharts-text {
+   color: #f5f8fa;
+}
+.bp3-dark .apexcharts-canvas svg text {
+   fill: #1e1e1e;
+}
+
+.bp3-dark .apexcharts-canvas svg text {
+   fill: #f5f8fa;
+}
+
+.bp3-body span.apexcharts-legend-text {
+   color: #1e1e1e;
+}
+
+.bp3-dark span.apexcharts-legend-text {
+   color: #f5f8fa;
+}
+
+.apexcharts-tooltip {
+   background: #ffffff;
+   color: #1e1e1e;
+   border-radius: 6px;
+   border: 1px solid rgba(0, 0, 0, 0.3);
+   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.15), 0 0 0 rgba(16, 22, 26, 0),
+      0 0 0 rgba(16, 22, 26, 0);
+}
+
+.bp3-dark .apexcharts-tooltip {
+   background: #434343;
+   color: #f5f8fa;
+   border: 1px solid rgba(0, 0, 0, 0.3);
+   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.4), 0 0 0 rgba(16, 22, 26, 0),
+      0 0 0 rgba(16, 22, 26, 0);
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-title {
+   background: #ffffff;
+   color: #1e1e1e;
+   text-align: center;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bp3-dark .apexcharts-tooltip .apexcharts-tooltip-title {
+   background: #494949;
+   color: #f5f8fa;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* ^^^^^^^^^^^^^^^^^^ */
+/* APEXCHARTS.JS HACK */

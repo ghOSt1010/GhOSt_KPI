@@ -1,0 +1,68 @@
+2020-02-24T19:04:27.182+0100 I  CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] MongoDB starting : pid=1021 port=27017 dbpath=/Users/rafalcymbalista/Projects/GhOSt_KPI/server/data/db/ 64-bit host=GhOSt-RC.local
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] db version v4.2.1
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] git version: edf6d45851c0b9ee15548f0f847df141764a317e
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] allocator: system
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] modules: none
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] build environment:
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten]     distarch: x86_64
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten]     target_arch: x86_64
+2020-02-24T19:04:27.188+0100 I  CONTROL  [initandlisten] options: { processManagement: { fork: true }, storage: { dbPath: "data/db/" }, systemLog: { destination: "file", path: "./data/db_start.log", quiet: true } }
+2020-02-24T19:04:27.191+0100 I  STORAGE  [initandlisten] Detected data files in /Users/rafalcymbalista/Projects/GhOSt_KPI/server/data/db/ created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2020-02-24T19:04:27.191+0100 I  STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3584M,cache_overflow=(file_max=0M),session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(wait=0),verbose=[recovery_progress,checkpoint_progress],
+2020-02-24T19:04:27.950+0100 I  STORAGE  [initandlisten] WiredTiger message [1582567467:950180][1021:0x110ccbdc0], txn-recover: Recovering log 268 through 269
+2020-02-24T19:04:28.037+0100 I  STORAGE  [initandlisten] WiredTiger message [1582567468:37854][1021:0x110ccbdc0], txn-recover: Recovering log 269 through 269
+2020-02-24T19:04:28.119+0100 I  STORAGE  [initandlisten] WiredTiger message [1582567468:119500][1021:0x110ccbdc0], txn-recover: Main recovery loop: starting at 268/2048 to 269/256
+2020-02-24T19:04:28.223+0100 I  STORAGE  [initandlisten] WiredTiger message [1582567468:223802][1021:0x110ccbdc0], txn-recover: Recovering log 268 through 269
+2020-02-24T19:04:28.295+0100 I  STORAGE  [initandlisten] WiredTiger message [1582567468:295876][1021:0x110ccbdc0], txn-recover: Recovering log 269 through 269
+2020-02-24T19:04:28.361+0100 I  STORAGE  [initandlisten] WiredTiger message [1582567468:361509][1021:0x110ccbdc0], txn-recover: Set global recovery timestamp: (0,0)
+2020-02-24T19:04:28.489+0100 I  RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2020-02-24T19:04:28.517+0100 I  STORAGE  [initandlisten] Timestamp monitor starting
+2020-02-24T19:04:28.518+0100 I  CONTROL  [initandlisten] 
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] 
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2020-02-24T19:04:28.519+0100 I  CONTROL  [initandlisten] 
+2020-02-24T19:04:28.528+0100 I  SHARDING [initandlisten] Marking collection local.system.replset as collection version: <unsharded>
+2020-02-24T19:04:28.533+0100 I  STORAGE  [initandlisten] Flow Control is enabled on this deployment.
+2020-02-24T19:04:28.534+0100 I  SHARDING [initandlisten] Marking collection admin.system.roles as collection version: <unsharded>
+2020-02-24T19:04:28.534+0100 I  SHARDING [initandlisten] Marking collection admin.system.version as collection version: <unsharded>
+2020-02-24T19:04:28.539+0100 I  SHARDING [initandlisten] Marking collection local.startup_log as collection version: <unsharded>
+2020-02-24T19:04:28.539+0100 I  FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/Users/rafalcymbalista/Projects/GhOSt_KPI/server/data/db/diagnostic.data'
+2020-02-24T19:04:28.542+0100 I  SHARDING [LogicalSessionCacheReap] Marking collection config.system.sessions as collection version: <unsharded>
+2020-02-24T19:04:28.542+0100 I  NETWORK  [initandlisten] Listening on /tmp/mongodb-27017.sock
+2020-02-24T19:04:28.542+0100 I  NETWORK  [initandlisten] Listening on 127.0.0.1
+2020-02-24T19:04:28.542+0100 I  NETWORK  [initandlisten] waiting for connections on port 27017
+2020-02-24T19:04:28.542+0100 I  SHARDING [LogicalSessionCacheReap] Marking collection config.transactions as collection version: <unsharded>
+2020-02-24T19:04:29.018+0100 I  SHARDING [ftdc] Marking collection local.oplog.rs as collection version: <unsharded>
+2020-02-24T19:30:07.135+0100 I  CONTROL  [signalProcessingThread] got signal 15 (Terminated: 15), will terminate after current cmd ends
+2020-02-24T19:30:07.150+0100 I  NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2020-02-24T19:30:07.150+0100 I  NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2020-02-24T19:30:07.151+0100 I  -        [signalProcessingThread] Stopping further Flow Control ticket acquisitions.
+2020-02-24T19:30:07.155+0100 I  CONTROL  [signalProcessingThread] Shutting down free monitoring
+2020-02-24T19:30:07.155+0100 I  FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+2020-02-24T19:30:07.159+0100 I  STORAGE  [signalProcessingThread] Deregistering all the collections
+2020-02-24T19:30:07.160+0100 I  STORAGE  [signalProcessingThread] Timestamp monitor shutting down
+2020-02-24T19:30:07.161+0100 I  STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+2020-02-24T19:30:07.161+0100 I  STORAGE  [signalProcessingThread] Shutting down session sweeper thread
+2020-02-24T19:30:07.162+0100 I  STORAGE  [signalProcessingThread] Finished shutting down session sweeper thread
+2020-02-24T19:30:07.162+0100 I  STORAGE  [signalProcessingThread] Shutting down journal flusher thread
+2020-02-24T19:30:07.172+0100 I  STORAGE  [signalProcessingThread] Finished shutting down journal flusher thread
+2020-02-24T19:30:07.172+0100 I  STORAGE  [signalProcessingThread] Shutting down checkpoint thread
+2020-02-24T19:30:07.172+0100 I  STORAGE  [signalProcessingThread] Finished shutting down checkpoint thread
+2020-02-24T19:30:07.172+0100 I  STORAGE  [signalProcessingThread] Downgrading WiredTiger datafiles.
+2020-02-24T19:30:07.335+0100 I  STORAGE  [signalProcessingThread] WiredTiger message [1582569007:335815][1021:0x70000cc79000], txn-recover: Recovering log 269 through 270
+2020-02-24T19:30:07.400+0100 I  STORAGE  [signalProcessingThread] WiredTiger message [1582569007:400600][1021:0x70000cc79000], txn-recover: Recovering log 270 through 270
+2020-02-24T19:30:07.476+0100 I  STORAGE  [signalProcessingThread] WiredTiger message [1582569007:476882][1021:0x70000cc79000], txn-recover: Main recovery loop: starting at 269/10880 to 270/256
+2020-02-24T19:30:07.582+0100 I  STORAGE  [signalProcessingThread] WiredTiger message [1582569007:582736][1021:0x70000cc79000], txn-recover: Recovering log 269 through 270
+2020-02-24T19:30:07.655+0100 I  STORAGE  [signalProcessingThread] WiredTiger message [1582569007:655910][1021:0x70000cc79000], txn-recover: Recovering log 270 through 270
+2020-02-24T19:30:07.732+0100 I  STORAGE  [signalProcessingThread] WiredTiger message [1582569007:732512][1021:0x70000cc79000], txn-recover: Set global recovery timestamp: (0,0)
+2020-02-24T19:30:07.999+0100 I  STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2020-02-24T19:30:08.002+0100 I  CONTROL  [signalProcessingThread] now exiting
+2020-02-24T19:30:08.002+0100 I  CONTROL  [signalProcessingThread] shutting down with code:0

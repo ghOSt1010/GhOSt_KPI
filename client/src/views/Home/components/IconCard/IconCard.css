@@ -1,0 +1,18 @@
+.icon-card-icon {
+   font-size: 40px;
+}
+.icon-card-text {
+   font-size: 24px;
+}
+
+.icon-card a {
+   color: gray;
+}
+
+.icon-card a:disabled {
+   color: lightgray;
+}
+
+.icon-card-disable a {
+   color: blue;
+}
