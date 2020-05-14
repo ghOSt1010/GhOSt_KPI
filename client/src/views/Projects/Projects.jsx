@@ -7,7 +7,7 @@ import {
    Portal,
    H5,
    Classes,
-   Card
+   Card,
 } from '@blueprintjs/core';
 import ProjectsTable from '../../components/Tables/ProjectsTable';
 import ProjectDialog from '../../components/Dialogs/ProjectDialog';
@@ -29,14 +29,14 @@ export default class Projects extends Component {
       canDelete: !false,
       name: '',
       manager: '',
-      selected: {}
+      selected: {},
    };
 
    getSelected = (sel, isSelected) => {
       this.setState({
          selected: sel,
          canEdit: isSelected,
-         canDelete: isSelected
+         canDelete: isSelected,
       });
    };
 
@@ -51,7 +51,7 @@ export default class Projects extends Component {
          //this.resetErrorMsg();
          result = await Client.Services.ProjectsService.getProjects();
          this.setState({
-            data: result.data
+            data: result.data,
          });
       } catch (err) {
          alert(err);
@@ -79,7 +79,7 @@ export default class Projects extends Component {
       }
    }
 
-   handleSubmit = async e => {
+   handleSubmit = async (e) => {
       e.preventDefault();
       const { name, manager } = this.state;
       var errorMsg = 'Unknown Error';
@@ -107,7 +107,7 @@ export default class Projects extends Component {
          this.openAlert(errorMsg);
       }
    };
-   handleUpdate = async e => {
+   handleUpdate = async (e) => {
       e.preventDefault();
       const { name, manager, selected } = this.state;
 
@@ -149,7 +149,7 @@ export default class Projects extends Component {
       this.setState({ errorMessage: '' });
    }
 
-   onChange = e => {
+   onChange = (e) => {
       const state = this.state;
       state[e.target.id] = e.target.value;
       this.setState(state);
@@ -157,16 +157,16 @@ export default class Projects extends Component {
 
    openDialog() {
       this.setState({
-         isAddDialogOpen: true
+         isAddDialogOpen: true,
       });
    }
    closeDialog() {
       this.setState({
-         isAddDialogOpen: false
+         isAddDialogOpen: false,
       });
    }
 
-   openEditDialog = async e => {
+   openEditDialog = async (e) => {
       e.preventDefault();
       const { selected } = this.state;
       try {
@@ -178,7 +178,7 @@ export default class Projects extends Component {
             this.setState({
                isEditDialogOpen: true,
                name: project.name,
-               manager: project.manager._id
+               manager: project.manager._id,
             });
          }
       } catch (err) {
@@ -186,37 +186,37 @@ export default class Projects extends Component {
          this.setState({
             isEditDialogOpen: true,
             name: selected.name,
-            manager: selected.manager._id
+            manager: selected.manager._id,
          });
       }
    };
    closeEditDialog() {
       this.setState({
-         isEditDialogOpen: false
+         isEditDialogOpen: false,
       });
    }
 
    openDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: true
+         isDeleteAlertOpen: true,
       });
    }
    closeDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: false
+         isDeleteAlertOpen: false,
       });
    }
 
    setLoading(loading) {
       this.setState({
-         isLoading: loading
+         isLoading: loading,
       });
    }
 
-   handleTabChange = activeTabID => {
+   handleTabChange = (activeTabID) => {
       this.setState({
          activeTabID: activeTabID,
-         selectedTabId: activeTabID
+         selectedTabId: activeTabID,
       });
    };
    clearForm() {
@@ -224,7 +224,7 @@ export default class Projects extends Component {
          name: '',
          manager: '',
          isAlertOpen: false,
-         errorMessage: ''
+         errorMessage: '',
       });
    }
 
@@ -250,7 +250,7 @@ export default class Projects extends Component {
          name,
          manager,
          isAlertOpen,
-         selected
+         selected,
       } = this.state;
 
       return (
@@ -267,14 +267,16 @@ export default class Projects extends Component {
                   id='Projects'
                   title='Projects'
                   panel={
-                     <Card>
-                        <ProjectsTable
-                           data={data}
-                           onRefresh={() => this.getProjectsData()}
-                           isLoading={isLoading}
-                           onSelection={this.getSelected}
-                        />
-                     </Card>
+                     <div className='main-container-tab-content'>
+                        <Card elevation='2'>
+                           <ProjectsTable
+                              data={data}
+                              onRefresh={() => this.getProjectsData()}
+                              isLoading={isLoading}
+                              onSelection={this.getSelected}
+                           />
+                        </Card>
+                     </div>
                   }
                />
                <Tabs.Expander />
@@ -321,7 +323,7 @@ export default class Projects extends Component {
             >
                <H5>Are you sure that you want to delete this user?</H5>
                <strong>{`User: ${selected.username}`}</strong>
-               <p></p>
+               <p />
                <strong
                   className={Classes.TEXT_MUTED}
                >{`Will be permanentyly deleted...`}</strong>

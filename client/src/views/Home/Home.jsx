@@ -6,7 +6,7 @@ import Client from '../../Modules/Client/Client';
 export default class Home extends Component {
    state = {
       testResult: '',
-      testServiceResult: []
+      testServiceResult: [],
    };
    componentDidMount() {
       //this.getUserData();
@@ -16,7 +16,7 @@ export default class Home extends Component {
       let result = await Client.testingCurrentUserAuth();
 
       this.setState({
-         testResult: result
+         testResult: result,
       });
    }
 
@@ -30,7 +30,7 @@ export default class Home extends Component {
             <div className='container-fluid'>
                <Row>
                   <Col xl={12} lg={12} md={12} sm={12} xs={12} className='mt-3'>
-                     <Card>
+                     <Card elevation='2'>
                         <div className='bp3-card-header'>
                            <div className='bp3-card-header-content'>
                               Project info
@@ -38,7 +38,7 @@ export default class Home extends Component {
                         </div>
                         <div className='card-body'>
                            <h4>This application is created for KPI analysis</h4>
-                           <hr></hr>
+                           <hr />
                            <h5 className={Classes.TEXT_MUTED}>
                               current version: 0.0.1
                            </h5>

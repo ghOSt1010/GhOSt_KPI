@@ -9,14 +9,14 @@ export default class MainDashboard extends Component {
       super(props);
       this.state = {
          showReportFilter: false,
-         activeTab: '1'
+         activeTab: '1',
       };
    }
 
    switchTab(tab) {
       if (this.state.activeTab !== tab) {
          this.setState({
-            activeTab: tab
+            activeTab: tab,
          });
       }
    }
@@ -24,15 +24,15 @@ export default class MainDashboard extends Component {
    testd = testData;
 
    labels() {
-      return this.testd.map(P => P.Project_Name);
+      return this.testd.map((P) => P.Project_Name);
    }
 
    getKPITargetData() {
-      return this.testd.map(P => P.Result);
+      return this.testd.map((P) => P.Result);
    }
 
    getKPIData() {
-      return this.testd.map(P => P.Target);
+      return this.testd.map((P) => P.Target);
    }
 
    data = {
@@ -42,9 +42,9 @@ export default class MainDashboard extends Component {
             label: 'Data',
             backgroundColor: '#008FFB',
             borderColor: '#008FFB',
-            data: this.getKPITargetData()
-         }
-      ]
+            data: this.getKPITargetData(),
+         },
+      ],
    };
    dataBar = {
       labels: this.labels(),
@@ -52,14 +52,14 @@ export default class MainDashboard extends Component {
          {
             label: 'KPI 1',
             backgroundColor: '#008FFB',
-            data: this.getKPIData()
+            data: this.getKPIData(),
          },
          {
             label: 'Target',
             backgroundColor: '#00E396',
-            data: this.getKPITargetData()
-         }
-      ]
+            data: this.getKPITargetData(),
+         },
+      ],
    };
    data_line = {
       labels: this.labels(),
@@ -68,15 +68,15 @@ export default class MainDashboard extends Component {
             label: 'KPI 2',
             borderColor: '#008FFB',
             backgroundColor: 'transparent',
-            data: this.getKPIData()
+            data: this.getKPIData(),
          },
          {
             label: 'Target',
             borderColor: '#00E396',
             backgroundColor: 'rgba(0,0,0,0)',
-            data: this.getKPITargetData()
-         }
-      ]
+            data: this.getKPITargetData(),
+         },
+      ],
    };
    dataRound = {
       labels: ['a', 'b'],
@@ -85,14 +85,14 @@ export default class MainDashboard extends Component {
             label: 'Data',
             backgroundColor: ['#4099ff', '#FFF3201'],
             borderColor: 'transparent',
-            data: [90, 10]
-         }
-      ]
+            data: [90, 10],
+         },
+      ],
    };
 
    switchShowReportFilter = () => {
-      this.setState(state => ({
-         showReportFilter: !state.showReportFilter
+      this.setState((state) => ({
+         showReportFilter: !state.showReportFilter,
       }));
    };
 
@@ -100,8 +100,9 @@ export default class MainDashboard extends Component {
       return (
          <div>
             <Row>
-               <Col xl={6} lg={6} md={12} sm={12} xs={12} className='mt-3'>
+               <Col xl={6} lg={6} md={12} sm={12} xs={12} className=''>
                   <ChartCard
+                     elevation='2'
                      chartType='Bar'
                      data={this.dataBar}
                      headerText='Graf'
@@ -109,8 +110,9 @@ export default class MainDashboard extends Component {
                      width={700}
                   />
                </Col>
-               <Col xl={6} lg={6} md={12} sm={12} xs={12} className='mt-3'>
+               <Col xl={6} lg={6} md={12} sm={12} xs={12} className=''>
                   <ChartCard
+                     elevation='2'
                      chartType='Line'
                      data={this.data_line}
                      headerText='Graf'
@@ -120,6 +122,7 @@ export default class MainDashboard extends Component {
                </Col>
                <Col xl={6} lg={6} md={12} sm={12} xs={12} className='mt-3'>
                   <ChartCard
+                     elevation='2'
                      chartType='Line'
                      data={this.data}
                      headerText='Line_test'
@@ -129,6 +132,7 @@ export default class MainDashboard extends Component {
                </Col>
                <Col xl={6} lg={6} md={12} sm={12} xs={12} className='mt-3'>
                   <ChartCard
+                     elevation='2'
                      chartType='Bar'
                      data={this.data}
                      headerText='Bar_test'
@@ -139,6 +143,7 @@ export default class MainDashboard extends Component {
 
                <Col xl={6} lg={6} md={12} sm={12} xs={12} className='mt-3'>
                   <ChartCard
+                     elevation='2'
                      chartType='Pie'
                      data={this.dataRound}
                      headerText='Pie Test'
@@ -150,6 +155,7 @@ export default class MainDashboard extends Component {
 
                <Col xl={6} lg={6} md={12} sm={12} xs={12} className='mt-3'>
                   <ChartCard
+                     elevation='2'
                      chartType='Doughnut'
                      data={this.dataRound}
                      headerText='Doughnut test'
@@ -161,6 +167,7 @@ export default class MainDashboard extends Component {
 
                <Col xl={12} lg={12} md={12} sm={12} xs={12} className='mt-3'>
                   <ChartCard
+                     elevation='2'
                      chartType='Radar'
                      data={this.dataBar}
                      headerText='Radar test'
@@ -172,6 +179,7 @@ export default class MainDashboard extends Component {
 
                <Col xl={12} lg={12} md={12} sm={12} xs={12} className='mt-3'>
                   <ChartCard
+                     elevation='2'
                      chartType='hBar'
                      data={this.dataBar}
                      headerText='Horizontal Bar'

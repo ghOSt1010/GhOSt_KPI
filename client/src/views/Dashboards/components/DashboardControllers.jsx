@@ -6,7 +6,6 @@ export default class DashboardControllers extends Component {
       const { onRefresh } = this.props;
       return (
          <div>
-            <ButtonGroup>{this.props.children}</ButtonGroup>
             <ButtonGroup>
                {this.props.children}
                <Divider />

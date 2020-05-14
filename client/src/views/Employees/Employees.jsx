@@ -23,14 +23,14 @@ export default class Employees extends Component {
       isUserEditDialogOpen: false,
       isDeleteAlertOpen: false,
       canEdit: !false,
-      canDelete: !false
+      canDelete: !false,
    };
 
    getSelected = (emp, isSelected) => {
       this.setState({
          selected: emp,
          canEdit: isSelected,
-         canDelete: isSelected
+         canDelete: isSelected,
       });
    };
 
@@ -45,7 +45,7 @@ export default class Employees extends Component {
          //this.resetErrorMsg();
          result = await Client.Services.EmployeesService.getEmployees();
          this.setState({
-            data: result.data
+            data: result.data,
          });
       } catch (err) {
          alert(err);
@@ -73,7 +73,7 @@ export default class Employees extends Component {
       }
    }
 
-   handleSubmit = async e => {
+   handleSubmit = async (e) => {
       e.preventDefault();
       const { email, name, team, project, user, type } = this.state;
       var errorMsg = 'Unknown Error';
@@ -103,7 +103,7 @@ export default class Employees extends Component {
          this.openAlert(errorMsg);
       }
    };
-   handleUpdate = async e => {
+   handleUpdate = async (e) => {
       e.preventDefault();
       const { name, email, user, type, project, team, selected } = this.state;
 
@@ -148,7 +148,7 @@ export default class Employees extends Component {
       this.setState({ errorMessage: '' });
    }
 
-   onChange = e => {
+   onChange = (e) => {
       const state = this.state;
       state[e.target.id] = e.target.value;
       this.setState(state);
@@ -156,16 +156,16 @@ export default class Employees extends Component {
 
    openEmployeesDialog() {
       this.setState({
-         isEmployeesDialogOpen: true
+         isEmployeesDialogOpen: true,
       });
    }
    closeEmployeesDialog() {
       this.setState({
-         isEmployeesDialogOpen: false
+         isEmployeesDialogOpen: false,
       });
    }
 
-   openUserEditDialog = async e => {
+   openUserEditDialog = async (e) => {
       e.preventDefault();
       const { selected } = this.state;
       try {
@@ -181,7 +181,7 @@ export default class Employees extends Component {
                user: emp.user._id,
                type: emp.type._id,
                project: emp.project._id,
-               team: emp.team._id
+               team: emp.team._id,
             });
          }
       } catch (err) {
@@ -193,37 +193,37 @@ export default class Employees extends Component {
             user: selected.user._id,
             type: selected.type._id,
             project: selected.project === null ? '' : selected.project._id,
-            team: selected.team._id
+            team: selected.team._id,
          });
       }
    };
    closeUserEditDialog() {
       this.setState({
-         isUserEditDialogOpen: false
+         isUserEditDialogOpen: false,
       });
    }
 
    openDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: true
+         isDeleteAlertOpen: true,
       });
    }
    closeDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: false
+         isDeleteAlertOpen: false,
       });
    }
 
    setLoading(loading) {
       this.setState({
-         isLoading: loading
+         isLoading: loading,
       });
    }
 
-   handleTabChange = activeTabID => {
+   handleTabChange = (activeTabID) => {
       this.setState({
          activeTabID: activeTabID,
-         selectedTabId: activeTabID
+         selectedTabId: activeTabID,
       });
    };
    clearForm() {
@@ -235,7 +235,7 @@ export default class Employees extends Component {
          project: '',
          team: '',
          isAlertOpen: false,
-         errorMessage: ''
+         errorMessage: '',
       });
    }
 
@@ -265,7 +265,7 @@ export default class Employees extends Component {
          user,
          type,
          isAlertOpen,
-         selected
+         selected,
       } = this.state;
 
       return (
@@ -282,55 +282,63 @@ export default class Employees extends Component {
                   id='Employees'
                   title='Employees'
                   panel={
-                     <Card>
-                        <EmployeePanel
-                           data={data}
-                           onRefresh={() => this.getEmployeesData()}
-                           isLoading={isLoading}
-                           isAlertOpen={isAlertOpen}
-                           isDeleteAlertOpen={this.state.isDeleteAlertOpen}
-                           getSelected={this.getSelected}
-                           isUserEditDialogOpen={
-                              this.state.isUserEditDialogOpen
-                           }
-                           toOpenUserEditDialog={() =>
-                              this.openUserEditDialog()
-                           }
-                           toCloseUserEditDialog={() =>
-                              this.closeUserEditDialog()
-                           }
-                           isEmployeesDialogOpen={
-                              this.state.isEmployeesDialogOpen
-                           }
-                           toOpenEmployeesDialog={() =>
-                              this.openEmployeesDialog()
-                           }
-                           toCloseEmployeesDialog={() =>
-                              this.closeEmployeesDialog()
-                           }
-                           name={name}
-                           email={email}
-                           user={user}
-                           selectedUser={user}
-                           type={type}
-                           selectedType={type}
-                           project={project}
-                           selectedProject={project}
-                           team={team}
-                           selectedTeam={team}
-                           onChange={this.onChange}
-                           handleSubmit={this.handleSubmit}
-                           handleUpdate={this.handleUpdate}
-                           onClear={() => this.clearForm()}
-                           onAlertClose={() => this.closeAlert()}
-                           onDeleteConfirm={() =>
-                              this.deleteEmployee(selected._id)
-                           }
-                           onDeleteCancel={() => this.closeDeleteAlert()}
-                           beforeDeleteInfo={`Employee: ${selected.name}`}
-                           portalID='EmployeePanel'
-                        />
-                     </Card>
+                     <div className='main-container-tab-content'>
+                        <Card elevation='2'>
+                           <EmployeePanel
+                              data={data}
+                              onRefresh={() => this.getEmployeesData()}
+                              isLoading={isLoading}
+                              isAlertOpen={isAlertOpen}
+                              isDeleteAlertOpen={
+                                 this.state.isDeleteAlertOpen
+                              }
+                              getSelected={this.getSelected}
+                              isUserEditDialogOpen={
+                                 this.state.isUserEditDialogOpen
+                              }
+                              toOpenUserEditDialog={() =>
+                                 this.openUserEditDialog()
+                              }
+                              toCloseUserEditDialog={() =>
+                                 this.closeUserEditDialog()
+                              }
+                              isEmployeesDialogOpen={
+                                 this.state.isEmployeesDialogOpen
+                              }
+                              toOpenEmployeesDialog={() =>
+                                 this.openEmployeesDialog()
+                              }
+                              toCloseEmployeesDialog={() =>
+                                 this.closeEmployeesDialog()
+                              }
+                              name={name}
+                              email={email}
+                              user={user}
+                              selectedUser={user}
+                              type={type}
+                              selectedType={type}
+                              project={project}
+                              selectedProject={project}
+                              team={team}
+                              selectedTeam={team}
+                              onChange={this.onChange}
+                              handleSubmit={this.handleSubmit}
+                              handleUpdate={this.handleUpdate}
+                              onClear={() => this.clearForm()}
+                              onAlertClose={() => this.closeAlert()}
+                              onDeleteConfirm={() =>
+                                 this.deleteEmployee(selected._id)
+                              }
+                              onDeleteCancel={() =>
+                                 this.closeDeleteAlert()
+                              }
+                              beforeDeleteInfo={`Employee: ${
+                                 selected.name
+                              }`}
+                              portalID='EmployeePanel'
+                           />
+                        </Card>
+                     </div>
                   }
                />
                <Tabs.Expander />

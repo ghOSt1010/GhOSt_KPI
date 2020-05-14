@@ -4,7 +4,8 @@ import Client from '../Modules/Client/Client';
 //import AppBar from '../components/AppBar/AppBar';
 import AppSidebar from '../components/AppSideBar/AppSideBar';
 import MainContainer from '../components/MainContainer/MainContainer';
-
+import AppBar from '../components/AppBar/AppBar';
+import AppLogo from '../components/AppLogo/AppLogo';
 export default function PrivateRoute({ component: Component, ...rest }) {
    //const { layout: Layout, component: Component, ...rest } = this.props;
    return (
@@ -12,10 +13,12 @@ export default function PrivateRoute({ component: Component, ...rest }) {
       // Otherwise, redirect the user to /signin page
       <Route
          {...rest}
-         render={props =>
+         render={(props) =>
             Client.isAuthenticated() ? (
                <div>
+                  <AppLogo />
                   <AppSidebar />
+                  <AppBar />
                   <MainContainer appView>
                      <Component {...props} />
                   </MainContainer>

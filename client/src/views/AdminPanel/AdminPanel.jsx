@@ -24,14 +24,14 @@ export default class AdminPanel extends Component {
       isUserEditDialogOpen: false,
       isDeleteAlertOpen: false,
       canEdit: !false,
-      canDelete: !false
+      canDelete: !false,
    };
 
    getSelected = (user, isSelected) => {
       this.setState({
          selected: user,
          canEdit: isSelected,
-         canDelete: isSelected
+         canDelete: isSelected,
       });
    };
 
@@ -46,7 +46,7 @@ export default class AdminPanel extends Component {
          //this.resetErrorMsg();
          result = await Client.Services.UsersService.getUsers();
          this.setState({
-            users: result.data
+            users: result.data,
          });
       } catch (err) {
          alert(err);
@@ -74,7 +74,7 @@ export default class AdminPanel extends Component {
       }
    }
 
-   handleSubmit = async e => {
+   handleSubmit = async (e) => {
       e.preventDefault();
       const { email, username, usertype, password, active } = this.state;
       var errorMsg = 'Unknown Error';
@@ -104,7 +104,7 @@ export default class AdminPanel extends Component {
       }
    };
 
-   handleUpdate = async e => {
+   handleUpdate = async (e) => {
       e.preventDefault();
       const {
          email,
@@ -112,7 +112,7 @@ export default class AdminPanel extends Component {
          usertype,
          password,
          active,
-         selected
+         selected,
       } = this.state;
       var errorMsg = 'Unknown Error';
       let usr = Client.Services.UsersService.createUserDTO(
@@ -153,7 +153,7 @@ export default class AdminPanel extends Component {
       this.setState({ isAlertOpen: false, errorMessage: '' });
    }
 
-   onChange = e => {
+   onChange = (e) => {
       const state = this.state;
       if (e.target.id === 'active') {
          let a = state.active;
@@ -166,12 +166,12 @@ export default class AdminPanel extends Component {
 
    openUserDialog() {
       this.setState({
-         isUserDialogOpen: true
+         isUserDialogOpen: true,
       });
    }
    closeUserDialog() {
       this.setState({
-         isUserDialogOpen: false
+         isUserDialogOpen: false,
       });
    }
 
@@ -183,36 +183,36 @@ export default class AdminPanel extends Component {
          username: selected.username,
          email: selected.email,
          password: '',
-         usertype: selected.type
+         usertype: selected.type,
       });
    }
    closeUserEditDialog() {
       this.setState({
-         isUserEditDialogOpen: false
+         isUserEditDialogOpen: false,
       });
    }
 
    openDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: true
+         isDeleteAlertOpen: true,
       });
    }
    closeDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: false
+         isDeleteAlertOpen: false,
       });
    }
 
    setLoading(loading) {
       this.setState({
-         isLoading: loading
+         isLoading: loading,
       });
    }
 
-   handleTabChange = activeTabID => {
+   handleTabChange = (activeTabID) => {
       this.setState({
          activeTabID: activeTabID,
-         selectedTabId: activeTabID
+         selectedTabId: activeTabID,
       });
    };
    clearForm() {
@@ -222,7 +222,7 @@ export default class AdminPanel extends Component {
          usertype: 'standard',
          password: '',
          isAlertOpen: false,
-         errorMessage: ''
+         errorMessage: '',
       });
    }
 
@@ -251,7 +251,7 @@ export default class AdminPanel extends Component {
          password,
          active,
          isAlertOpen,
-         selected
+         selected,
       } = this.state;
 
       return (
@@ -268,53 +268,55 @@ export default class AdminPanel extends Component {
                   id='Users'
                   title='Users'
                   panel={
-                     <Card>
-                        <UsersTable
-                           usersData={users}
-                           onRefresh={() => this.getUsersData()}
-                           isLoading={isLoading}
-                           onSelection={this.getSelected}
-                        />
-                        <UserDialog
-                           isOpen={this.state.isUserEditDialogOpen}
-                           toOpen={() => this.openUserEditDialog()}
-                           toClose={() => this.closeUserEditDialog()}
-                           email={email}
-                           username={username}
-                           password={password}
-                           usertype={usertype}
-                           active={active}
-                           onChange={this.onChange}
-                           handleSubmit={this.handleUpdate}
-                           buttonCaption='Update'
-                           onClear={() => this.clearForm()}
-                           isAlertOpen={isAlertOpen}
-                           closeAlert={() => this.closeAlert()}
-                        />
-                        <UserDialog
-                           isOpen={this.state.isUserDialogOpen}
-                           toOpen={() => this.openUserDialog()}
-                           toClose={() => this.closeUserDialog()}
-                           email={email}
-                           username={username}
-                           password={password}
-                           usertype={usertype}
-                           active={active}
-                           onChange={this.onChange}
-                           handleSubmit={this.handleSubmit}
-                           buttonCaption='Add'
-                           onClear={() => this.clearForm()}
-                           isAlertOpen={isAlertOpen}
-                           closeAlert={() => this.closeAlert()}
-                        />
-                        <BeforeDeleteAlert
-                           isOpen={this.state.isDeleteAlertOpen}
-                           onConfirm={() => this.deleteUser(selected._id)}
-                           onCancel={() => this.closeDeleteAlert()}
-                           portalID='AdminPanel'
-                           info={`User: ${selected.username}`}
-                        />
-                     </Card>
+                     <div className='main-container-tab-content'>
+                        <Card elevation='2'>
+                           <UsersTable
+                              usersData={users}
+                              onRefresh={() => this.getUsersData()}
+                              isLoading={isLoading}
+                              onSelection={this.getSelected}
+                           />
+                           <UserDialog
+                              isOpen={this.state.isUserEditDialogOpen}
+                              toOpen={() => this.openUserEditDialog()}
+                              toClose={() => this.closeUserEditDialog()}
+                              email={email}
+                              username={username}
+                              password={password}
+                              usertype={usertype}
+                              active={active}
+                              onChange={this.onChange}
+                              handleSubmit={this.handleUpdate}
+                              buttonCaption='Update'
+                              onClear={() => this.clearForm()}
+                              isAlertOpen={isAlertOpen}
+                              closeAlert={() => this.closeAlert()}
+                           />
+                           <UserDialog
+                              isOpen={this.state.isUserDialogOpen}
+                              toOpen={() => this.openUserDialog()}
+                              toClose={() => this.closeUserDialog()}
+                              email={email}
+                              username={username}
+                              password={password}
+                              usertype={usertype}
+                              active={active}
+                              onChange={this.onChange}
+                              handleSubmit={this.handleSubmit}
+                              buttonCaption='Add'
+                              onClear={() => this.clearForm()}
+                              isAlertOpen={isAlertOpen}
+                              closeAlert={() => this.closeAlert()}
+                           />
+                           <BeforeDeleteAlert
+                              isOpen={this.state.isDeleteAlertOpen}
+                              onConfirm={() => this.deleteUser(selected._id)}
+                              onCancel={() => this.closeDeleteAlert()}
+                              portalID='AdminPanel'
+                              info={`User: ${selected.username}`}
+                           />
+                        </Card>
+                     </div>
                   }
                />
 

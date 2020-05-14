@@ -21,14 +21,14 @@ export default class Teams extends Component {
       canDelete: !false,
       name: '',
       manager: '',
-      selected: {}
+      selected: {},
    };
 
    getSelected = (sel, isSelected) => {
       this.setState({
          selected: sel,
          canEdit: isSelected,
-         canDelete: isSelected
+         canDelete: isSelected,
       });
    };
 
@@ -43,7 +43,7 @@ export default class Teams extends Component {
          //this.resetErrorMsg();
          result = await Client.Services.TeamsService.getTeams();
          this.setState({
-            data: result.data
+            data: result.data,
          });
       } catch (err) {
          alert(err);
@@ -71,7 +71,7 @@ export default class Teams extends Component {
       }
    }
 
-   handleSubmit = async e => {
+   handleSubmit = async (e) => {
       e.preventDefault();
       const { name, manager } = this.state;
       var errorMsg = 'Unknown Error';
@@ -97,7 +97,7 @@ export default class Teams extends Component {
          this.openAlert(errorMsg);
       }
    };
-   handleUpdate = async e => {
+   handleUpdate = async (e) => {
       e.preventDefault();
       const { name, manager, selected } = this.state;
 
@@ -137,7 +137,7 @@ export default class Teams extends Component {
       this.setState({ errorMessage: '' });
    }
 
-   onChange = e => {
+   onChange = (e) => {
       const state = this.state;
       state[e.target.id] = e.target.value;
       this.setState(state);
@@ -145,16 +145,16 @@ export default class Teams extends Component {
 
    openDialog() {
       this.setState({
-         isAddDialogOpen: true
+         isAddDialogOpen: true,
       });
    }
    closeDialog() {
       this.setState({
-         isAddDialogOpen: false
+         isAddDialogOpen: false,
       });
    }
 
-   openEditDialog = async e => {
+   openEditDialog = async (e) => {
       e.preventDefault();
       const { selected } = this.state;
       try {
@@ -167,7 +167,7 @@ export default class Teams extends Component {
             this.setState({
                isEditDialogOpen: true,
                name: team.name,
-               manager: team.manager._id
+               manager: team.manager._id,
             });
          }
       } catch (err) {
@@ -175,37 +175,37 @@ export default class Teams extends Component {
          this.setState({
             isEditDialogOpen: true,
             name: selected.name,
-            manager: selected.manager._id
+            manager: selected.manager._id,
          });
       }
    };
    closeEditDialog() {
       this.setState({
-         isEditDialogOpen: false
+         isEditDialogOpen: false,
       });
    }
 
    openDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: true
+         isDeleteAlertOpen: true,
       });
    }
    closeDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: false
+         isDeleteAlertOpen: false,
       });
    }
 
    setLoading(loading) {
       this.setState({
-         isLoading: loading
+         isLoading: loading,
       });
    }
 
-   handleTabChange = activeTabID => {
+   handleTabChange = (activeTabID) => {
       this.setState({
          activeTabID: activeTabID,
-         selectedTabId: activeTabID
+         selectedTabId: activeTabID,
       });
    };
    clearForm() {
@@ -213,7 +213,7 @@ export default class Teams extends Component {
          name: '',
          manager: '',
          isAlertOpen: false,
-         errorMessage: ''
+         errorMessage: '',
       });
    }
 
@@ -239,7 +239,7 @@ export default class Teams extends Component {
          name,
          manager,
          isAlertOpen,
-         selected
+         selected,
       } = this.state;
 
       return (
@@ -256,48 +256,50 @@ export default class Teams extends Component {
                   id='Teams'
                   title='Teams'
                   panel={
-                     <Card>
-                        <TeamsTable
-                           data={data}
-                           onRefresh={() => this.getData()}
-                           isLoading={isLoading}
-                           onSelection={this.getSelected}
-                        />
-                        <TeamDialog
-                           isOpen={this.state.isEditDialogOpen}
-                           toOpen={() => this.openEditDialog()}
-                           toClose={() => this.closeEditDialog()}
-                           name={name}
-                           manager={manager}
-                           selectedManager={manager}
-                           onChange={this.onChange}
-                           handleSubmit={this.handleUpdate}
-                           buttonCaption='Update'
-                           onClear={() => this.clearForm()}
-                           isAlertOpen={isAlertOpen}
-                           closeAlert={() => this.closeAlert()}
-                        />
-                        <TeamDialog
-                           isOpen={this.state.isAddDialogOpen}
-                           toOpen={() => this.openDialog()}
-                           toClose={() => this.closeDialog()}
-                           name={name}
-                           manager={manager}
-                           onChange={this.onChange}
-                           handleSubmit={this.handleSubmit}
-                           buttonCaption='Add'
-                           onClear={() => this.clearForm()}
-                           isAlertOpen={isAlertOpen}
-                           closeAlert={() => this.closeAlert()}
-                        />
-                        <BeforeDeleteAlert
-                           isOpen={this.state.isDeleteAlertOpen}
-                           onConfirm={() => this.deleteItem(selected._id)}
-                           onCancel={() => this.closeDeleteAlert()}
-                           portalID='TeamsPanel'
-                           info={`Team: ${selected.name}`}
-                        />
-                     </Card>
+                     <div className='main-container-tab-content'>
+                        <Card elevation='2'>
+                           <TeamsTable
+                              data={data}
+                              onRefresh={() => this.getData()}
+                              isLoading={isLoading}
+                              onSelection={this.getSelected}
+                           />
+                           <TeamDialog
+                              isOpen={this.state.isEditDialogOpen}
+                              toOpen={() => this.openEditDialog()}
+                              toClose={() => this.closeEditDialog()}
+                              name={name}
+                              manager={manager}
+                              selectedManager={manager}
+                              onChange={this.onChange}
+                              handleSubmit={this.handleUpdate}
+                              buttonCaption='Update'
+                              onClear={() => this.clearForm()}
+                              isAlertOpen={isAlertOpen}
+                              closeAlert={() => this.closeAlert()}
+                           />
+                           <TeamDialog
+                              isOpen={this.state.isAddDialogOpen}
+                              toOpen={() => this.openDialog()}
+                              toClose={() => this.closeDialog()}
+                              name={name}
+                              manager={manager}
+                              onChange={this.onChange}
+                              handleSubmit={this.handleSubmit}
+                              buttonCaption='Add'
+                              onClear={() => this.clearForm()}
+                              isAlertOpen={isAlertOpen}
+                              closeAlert={() => this.closeAlert()}
+                           />
+                           <BeforeDeleteAlert
+                              isOpen={this.state.isDeleteAlertOpen}
+                              onConfirm={() => this.deleteItem(selected._id)}
+                              onCancel={() => this.closeDeleteAlert()}
+                              portalID='TeamsPanel'
+                              info={`Team: ${selected.name}`}
+                           />
+                        </Card>
+                     </div>
                   }
                />
                <Tabs.Expander />

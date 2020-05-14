@@ -7,7 +7,7 @@ import {
    Portal,
    H5,
    Classes,
-   Card
+   Card,
 } from '@blueprintjs/core';
 import ReportsTable from '../../components/Tables/ReportsTable';
 import ReportDialog from '../../components/Dialogs/ReportDialog';
@@ -34,14 +34,14 @@ export default class Reports extends Component {
       isUserEditDialogOpen: false,
       isDeleteAlertOpen: false,
       canEdit: !false,
-      canDelete: !false
+      canDelete: !false,
    };
 
    getSelected = (emp, isSelected) => {
       this.setState({
          selected: emp,
          canEdit: isSelected,
-         canDelete: isSelected
+         canDelete: isSelected,
       });
    };
 
@@ -57,7 +57,7 @@ export default class Reports extends Component {
          //this.resetErrorMsg();
          result = await Client.Services.ReportingService.getReports();
          this.setState({
-            data: result.data
+            data: result.data,
          });
       } catch (err) {
          alert(err);
@@ -77,7 +77,7 @@ export default class Reports extends Component {
          );
          this.setState({
             emp: result.data,
-            reportedBy: result.data._id
+            reportedBy: result.data._id,
          });
       } catch (err) {
          alert(err);
@@ -105,7 +105,7 @@ export default class Reports extends Component {
       }
    }
 
-   handleSubmit = async e => {
+   handleSubmit = async (e) => {
       e.preventDefault();
       const { kpi, emp, result, completed, status, reportedAt } = this.state;
       var errorMsg = 'Unknown Error';
@@ -135,7 +135,7 @@ export default class Reports extends Component {
          this.openAlert(errorMsg);
       }
    };
-   handleUpdate = async e => {
+   handleUpdate = async (e) => {
       e.preventDefault();
       const { emp, kpi, completed, status, reportedAt } = this.state;
 
@@ -168,15 +168,15 @@ export default class Reports extends Component {
       }
    };
 
-   handleResultValueChange = number => {
+   handleResultValueChange = (number) => {
       this.setState({ result: number });
    };
 
-   handleValueChange = number => {
+   handleValueChange = (number) => {
       this.setState({ result: number });
    };
 
-   handleDateChange = newFromDate => {
+   handleDateChange = (newFromDate) => {
       this.setState({ time_from: newFromDate });
    };
    openAlert(msg) {
@@ -190,7 +190,7 @@ export default class Reports extends Component {
       this.setState({ errorMessage: '' });
    }
 
-   onChange = e => {
+   onChange = (e) => {
       const state = this.state;
       state[e.target.id] = e.target.value;
       this.setState(state);
@@ -198,16 +198,16 @@ export default class Reports extends Component {
 
    openDialog() {
       this.setState({
-         isEmployeesDialogOpen: true
+         isEmployeesDialogOpen: true,
       });
    }
    closeEmployeesDialog() {
       this.setState({
-         isEmployeesDialogOpen: false
+         isEmployeesDialogOpen: false,
       });
    }
 
-   openEditDialog = async e => {
+   openEditDialog = async (e) => {
       e.preventDefault();
       const { selected } = this.state;
       try {
@@ -223,7 +223,7 @@ export default class Reports extends Component {
                result: report.result,
                completed: report.completed,
                status: report.status,
-               reportedAt: report.reportedAt
+               reportedAt: report.reportedAt,
             });
          }
       } catch (err) {
@@ -235,37 +235,37 @@ export default class Reports extends Component {
             result: selected.result,
             completed: selected.completed,
             status: selected.status,
-            reportedAt: selected.reportedAt
+            reportedAt: selected.reportedAt,
          });
       }
    };
    closeUserEditDialog() {
       this.setState({
-         isUserEditDialogOpen: false
+         isUserEditDialogOpen: false,
       });
    }
 
    openDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: true
+         isDeleteAlertOpen: true,
       });
    }
    closeDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: false
+         isDeleteAlertOpen: false,
       });
    }
 
    setLoading(loading) {
       this.setState({
-         isLoading: loading
+         isLoading: loading,
       });
    }
 
-   handleTabChange = activeTabID => {
+   handleTabChange = (activeTabID) => {
       this.setState({
          activeTabID: activeTabID,
-         selectedTabId: activeTabID
+         selectedTabId: activeTabID,
       });
    };
    clearForm() {
@@ -277,7 +277,7 @@ export default class Reports extends Component {
          status: '',
          reportedAt: '',
          isAlertOpen: false,
-         errorMessage: ''
+         errorMessage: '',
       });
    }
 
@@ -307,7 +307,7 @@ export default class Reports extends Component {
          status,
          reportedAt,
          isAlertOpen,
-         selected
+         selected,
       } = this.state;
 
       return (
@@ -324,14 +324,16 @@ export default class Reports extends Component {
                   id='Reports'
                   title='Reports'
                   panel={
-                     <Card>
-                        <ReportsTable
-                           data={data}
-                           onRefresh={() => this.getData()}
-                           isLoading={isLoading}
-                           onSelection={this.getSelected}
-                        />
-                     </Card>
+                     <div className='main-container-tab-content'>
+                        <Card elevation='2'>
+                           <ReportsTable
+                              data={data}
+                              onRefresh={() => this.getData()}
+                              isLoading={isLoading}
+                              onSelection={this.getSelected}
+                           />
+                        </Card>
+                     </div>
                   }
                />
                <Tabs.Expander />
@@ -391,7 +393,7 @@ export default class Reports extends Component {
             >
                <H5>Are you sure that you want to delete this user?</H5>
                <strong>{`Report`}</strong>
-               <p></p>
+               <p />
                <strong
                   className={Classes.TEXT_MUTED}
                >{`Will be permanentyly deleted...`}</strong>

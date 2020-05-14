@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Tab, H2, Divider, Card } from '@blueprintjs/core';
+import { Tabs, Tab, H2, Card } from '@blueprintjs/core';
 import KPIsTable from '../../components/Tables/KPIsTable';
 import KPIDialog from '../../components/Dialogs/KPIDialog';
 import Client from '../../Modules/Client/Client';
@@ -26,7 +26,7 @@ export default class Teams extends Component {
       target: 0,
       project: '',
       manager: '',
-      selected: {}
+      selected: {},
    };
 
    setDefaultToDate(d) {
@@ -39,7 +39,7 @@ export default class Teams extends Component {
       this.setState({
          selected: sel,
          canEdit: isSelected,
-         canDelete: isSelected
+         canDelete: isSelected,
       });
    };
 
@@ -55,7 +55,7 @@ export default class Teams extends Component {
          result = await Client.Services.KPIsService.getKPIs();
          this.setState({
             data: result.data,
-            isNoData: false
+            isNoData: false,
          });
          if (result.data.length === 0) {
             this.setState({ isNoData: true });
@@ -83,7 +83,7 @@ export default class Teams extends Component {
       }
    }
 
-   handleSubmit = async e => {
+   handleSubmit = async (e) => {
       e.preventDefault();
       const { name, time_from, time_to, target, project, manager } = this.state;
       let kpi = await Client.Services.KPIsService.createKPIDTO(
@@ -105,7 +105,7 @@ export default class Teams extends Component {
          this.handleError(err);
       }
    };
-   handleUpdate = async e => {
+   handleUpdate = async (e) => {
       e.preventDefault();
       const {
          name,
@@ -114,7 +114,7 @@ export default class Teams extends Component {
          target,
          project,
          manager,
-         selected
+         selected,
       } = this.state;
 
       try {
@@ -161,35 +161,35 @@ export default class Teams extends Component {
       this.setState({ errorMessage: '' });
    }
 
-   onChange = e => {
+   onChange = (e) => {
       const state = this.state;
       state[e.target.id] = e.target.value;
       this.setState(state);
    };
 
-   handleTargetValueChange = number => {
+   handleTargetValueChange = (number) => {
       this.setState({ target: number });
    };
 
-   handleDateFromChange = newFromDate => {
+   handleDateFromChange = (newFromDate) => {
       this.setState({ time_from: newFromDate });
    };
-   handleDateToChange = newToDate => {
+   handleDateToChange = (newToDate) => {
       this.setState({ time_to: newToDate });
    };
 
    openDialog() {
       this.setState({
-         isAddDialogOpen: true
+         isAddDialogOpen: true,
       });
    }
    closeDialog() {
       this.setState({
-         isAddDialogOpen: false
+         isAddDialogOpen: false,
       });
    }
 
-   openEditDialog = async e => {
+   openEditDialog = async (e) => {
       e.preventDefault();
       const { selected } = this.state;
       try {
@@ -208,7 +208,7 @@ export default class Teams extends Component {
                time_to: new Date(kpi.time_to),
                target: kpi.target,
                project: kpi.project._id,
-               manager: kpi.manager._id
+               manager: kpi.manager._id,
             });
          }
       } catch (err) {
@@ -220,37 +220,37 @@ export default class Teams extends Component {
             time_from: new Date(selected.time_from),
             time_to: new Date(selected.time_to),
             target: selected.target,
-            project: selected.project._id
+            project: selected.project._id,
          });
       }
    };
    closeEditDialog() {
       this.setState({
-         isEditDialogOpen: false
+         isEditDialogOpen: false,
       });
    }
 
    openDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: true
+         isDeleteAlertOpen: true,
       });
    }
    closeDeleteAlert() {
       this.setState({
-         isDeleteAlertOpen: false
+         isDeleteAlertOpen: false,
       });
    }
 
    setLoading(loading) {
       this.setState({
-         isLoading: loading
+         isLoading: loading,
       });
    }
 
-   handleTabChange = activeTabID => {
+   handleTabChange = (activeTabID) => {
       this.setState({
          activeTabID: activeTabID,
-         selectedTabId: activeTabID
+         selectedTabId: activeTabID,
       });
    };
    clearForm() {
@@ -258,23 +258,22 @@ export default class Teams extends Component {
          name: '',
          manager: '',
          isAlertOpen: false,
-         errorMessage: ''
+         errorMessage: '',
       });
    }
 
-   renderControlls() {
+   renderControlls(inHeader = false) {
       if (this.state.selectedTabId === 'KPIs') {
          return (
             <TableControllers
+               inHeader={inHeader}
                onEdit={this.openEditDialog}
                canEdit={this.state.canEdit}
                onAdd={() => this.openDialog()}
                onDelete={() => this.openDeleteAlert()}
                canDelete={this.state.canDelete}
                onRefresh={() => this.getData()}
-            >
-               <Divider></Divider>
-            </TableControllers>
+            />
          );
       }
    }
@@ -290,7 +289,7 @@ export default class Teams extends Component {
          project,
          manager,
          isAlertOpen,
-         selected
+         selected,
       } = this.state;
 
       return (
@@ -307,64 +306,66 @@ export default class Teams extends Component {
                   id='KPIs'
                   title='KPIs'
                   panel={
-                     <Card>
-                        <KPIsTable
-                           isEmpty={this.state.isNoData}
-                           data={data}
-                           onRefresh={() => this.getData()}
-                           isLoading={isLoading}
-                           onSelection={this.getSelected}
-                        />
-                        <KPIDialog
-                           isOpen={this.state.isEditDialogOpen}
-                           toOpen={() => this.openEditDialog()}
-                           toClose={() => this.closeEditDialog()}
-                           name={selected.name}
-                           time_from={time_from}
-                           time_to={time_to}
-                           target={target}
-                           project={project}
-                           selectedProject={project}
-                           manager={manager}
-                           selectedManager={manager}
-                           onChange={this.onChange}
-                           handleDateFromChange={this.handleDateFromChange}
-                           handleDateToChange={this.handleDateToChange}
-                           onTargetValueChange={this.handleTargetValueChange}
-                           handleSubmit={this.handleUpdate}
-                           buttonCaption='Update'
-                           onClear={() => this.clearForm()}
-                           isAlertOpen={isAlertOpen}
-                           closeAlert={() => this.closeAlert()}
-                        />
-                        <KPIDialog
-                           isOpen={this.state.isAddDialogOpen}
-                           toOpen={() => this.openDialog()}
-                           toClose={() => this.closeDialog()}
-                           name={name}
-                           time_from={time_from}
-                           time_to={time_to}
-                           target={target}
-                           project={project}
-                           manager={manager}
-                           onChange={this.onChange}
-                           handleDateFromChange={this.handleDateFromChange}
-                           handleDateToChange={this.handleDateToChange}
-                           onTargetValueChange={this.handleTargetValueChange}
-                           handleSubmit={this.handleSubmit}
-                           buttonCaption='Add'
-                           onClear={() => this.clearForm()}
-                           isAlertOpen={isAlertOpen}
-                           closeAlert={() => this.closeAlert()}
-                        />
-                        <BeforeDeleteAlert
-                           isOpen={this.state.isDeleteAlertOpen}
-                           onConfirm={() => this.deleteItem(selected._id)}
-                           onCancel={() => this.closeDeleteAlert()}
-                           portalID='KPIPanel'
-                           info={`KPI: ${selected.name}`}
-                        />
-                     </Card>
+                     <div className='main-container-tab-content'>
+                        <Card elevation='2'>
+                           <KPIsTable
+                              isEmpty={this.state.isNoData}
+                              data={data}
+                              onRefresh={() => this.getData()}
+                              isLoading={isLoading}
+                              onSelection={this.getSelected}
+                           />
+                           <KPIDialog
+                              isOpen={this.state.isEditDialogOpen}
+                              toOpen={() => this.openEditDialog()}
+                              toClose={() => this.closeEditDialog()}
+                              name={selected.name}
+                              time_from={time_from}
+                              time_to={time_to}
+                              target={target}
+                              project={project}
+                              selectedProject={project}
+                              manager={manager}
+                              selectedManager={manager}
+                              onChange={this.onChange}
+                              handleDateFromChange={this.handleDateFromChange}
+                              handleDateToChange={this.handleDateToChange}
+                              onTargetValueChange={this.handleTargetValueChange}
+                              handleSubmit={this.handleUpdate}
+                              buttonCaption='Update'
+                              onClear={() => this.clearForm()}
+                              isAlertOpen={isAlertOpen}
+                              closeAlert={() => this.closeAlert()}
+                           />
+                           <KPIDialog
+                              isOpen={this.state.isAddDialogOpen}
+                              toOpen={() => this.openDialog()}
+                              toClose={() => this.closeDialog()}
+                              name={name}
+                              time_from={time_from}
+                              time_to={time_to}
+                              target={target}
+                              project={project}
+                              manager={manager}
+                              onChange={this.onChange}
+                              handleDateFromChange={this.handleDateFromChange}
+                              handleDateToChange={this.handleDateToChange}
+                              onTargetValueChange={this.handleTargetValueChange}
+                              handleSubmit={this.handleSubmit}
+                              buttonCaption='Add'
+                              onClear={() => this.clearForm()}
+                              isAlertOpen={isAlertOpen}
+                              closeAlert={() => this.closeAlert()}
+                           />
+                           <BeforeDeleteAlert
+                              isOpen={this.state.isDeleteAlertOpen}
+                              onConfirm={() => this.deleteItem(selected._id)}
+                              onCancel={() => this.closeDeleteAlert()}
+                              portalID='KPIPanel'
+                              info={`KPI: ${selected.name}`}
+                           />
+                        </Card>
+                     </div>
                   }
                />
                <Tabs.Expander />
