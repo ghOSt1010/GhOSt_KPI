@@ -47,7 +47,7 @@ export default class ProjectsTable extends Component {
       return (
          <Table
             headers={this.state.headers}
-            rows={this.renderTableRows()}
+            data={this.props.data}
             errorMsg={this.props.errorMsg}
             isLoading={this.props.isLoading}
             onRefresh={this.props.onRefresh}

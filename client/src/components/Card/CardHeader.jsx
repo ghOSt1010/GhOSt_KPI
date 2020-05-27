@@ -15,17 +15,22 @@ export default class CardHeader extends Component {
       return this.props.children;
    }
 
+   getClassess() {
+      let classess = '';
+      this.props.noBorder
+         ? (classess = 'bp3-card-header-no-border')
+         : (classess = 'bp3-card-header');
+      this.props.isBodyOpen
+         ? (classess += '')
+         : (classess += 'bp3-border-collapsed');
+      return classess;
+   }
+
    render() {
       return (
-         <div
-            className={`${
-               this.props.noBorder
-                  ? 'bp3-card-header-no-border'
-                  : 'bp3-card-header'
-            } ${this.props.isBodyOpen ? '' : 'bp3-border-collapsed'}`}
-         >
+         <div className={this.getClassess()}>
             <div className='bp3-card-header-content'>
-               <Icon icon={this.props.icon} className='mr-2' />
+               <Icon icon={this.props.icon} className='mr-2' intent='none' />
                {this.props.headerText}
                {this.props.children}
 

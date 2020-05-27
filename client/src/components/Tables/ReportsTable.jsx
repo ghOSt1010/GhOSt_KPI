@@ -74,8 +74,7 @@ export default class ReportsTable extends Component {
    render() {
       return (
          <Table
-            headers={this.state.headers}
-            rows={this.renderTableRows()}
+            data={this.props.data}
             errorMsg={this.props.errorMsg}
             isLoading={this.props.isLoading}
             onRefresh={this.props.onRefresh}

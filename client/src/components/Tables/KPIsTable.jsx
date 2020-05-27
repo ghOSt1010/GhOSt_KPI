@@ -1,52 +1,13 @@
 import React, { Component } from 'react';
 import Table from './Table';
-import TableCell from './TableCell';
-import TableHeaders from './TableHeaders';
 
 export default class KPIsTable extends Component {
    state = {
       selected: '',
-      headers: [
-         { text: 'KPI' },
-         { text: 'Valid From' },
-         { text: 'Valid Until' },
-         { text: 'Target', center: true },
-         { text: 'Project' },
-         { text: 'Manager' },
-      ],
+      data: [],
    };
 
-   renderTableHeader() {
-      return <TableHeaders headers={this.state.headers} />;
-   }
-   renderTableBody() {
-      return <tbody>{this.renderTableRows()}</tbody>;
-   }
-   renderTableRows() {
-      const { data } = this.props;
-      return data.map((kpi, key) => {
-         return (
-            <tr
-               key={kpi._id}
-               onClick={(e) => this.handleSelection(e, kpi)}
-               className={`${
-                  this.state.selected._id === kpi._id ? 'bg-selected' : ''
-               }`}
-            >
-               <TableCell value={kpi.name} />
-               <TableCell
-                  value={new Date(kpi.time_from).toLocaleDateString()}
-               />
-               <TableCell value={new Date(kpi.time_to).toLocaleDateString()} />
-               <TableCell value={kpi.target} center />
-               <TableCell value={kpi.project.name} />
-               <TableCell value={kpi.manager.name} />
-            </tr>
-         );
-      });
-   }
-
-   handleSelection(e, kpi) {
+   handleSelection = (e, kpi) => {
       e.preventDefault();
       const { selected } = this.state;
       if (selected._id !== kpi._id) {
@@ -58,20 +19,28 @@ export default class KPIsTable extends Component {
       }
       this.props.onSelection({}, true);
       this.setState({ selected: {} });
-   }
+   };
 
    render() {
       return (
          <Table
-            headers={this.state.headers}
-            rows={this.renderTableRows()}
+            title='KPIs'
+            handleSelection={this.handleSelection}
+            headers={this.props.headers}
+            data={this.props.data}
             errorMsg={this.props.errorMsg}
             isLoading={this.props.isLoading}
             onRefresh={this.props.onRefresh}
+            onEdit={this.props.onEdit}
+            canEdit={this.props.canEdit}
+            onAdd={this.props.onAdd}
+            onDelete={this.props.onDelete}
+            canDelete={this.props.canDelete}
          />
       );
    }
 }
+
 KPIsTable.defaultProps = {
    data: [],
    onRefresh: function() {

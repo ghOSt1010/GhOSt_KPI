@@ -3,7 +3,6 @@ import { Tabs, Tab, H2, Card } from '@blueprintjs/core';
 import KPIsTable from '../../components/Tables/KPIsTable';
 import KPIDialog from '../../components/Dialogs/KPIDialog';
 import Client from '../../Modules/Client/Client';
-import TableControllers from '../../components/Tables/TableControllers';
 import BeforeDeleteAlert from '../../components/Alerts/BeforeDeleteAlert';
 
 export default class Teams extends Component {
@@ -262,22 +261,6 @@ export default class Teams extends Component {
       });
    }
 
-   renderControlls(inHeader = false) {
-      if (this.state.selectedTabId === 'KPIs') {
-         return (
-            <TableControllers
-               inHeader={inHeader}
-               onEdit={this.openEditDialog}
-               canEdit={this.state.canEdit}
-               onAdd={() => this.openDialog()}
-               onDelete={() => this.openDeleteAlert()}
-               canDelete={this.state.canDelete}
-               onRefresh={() => this.getData()}
-            />
-         );
-      }
-   }
-
    render() {
       const {
          data,
@@ -314,6 +297,11 @@ export default class Teams extends Component {
                               onRefresh={() => this.getData()}
                               isLoading={isLoading}
                               onSelection={this.getSelected}
+                              onEdit={this.openEditDialog}
+                              canEdit={this.state.canEdit}
+                              onAdd={() => this.openDialog()}
+                              onDelete={() => this.openDeleteAlert()}
+                              canDelete={this.state.canDelete}
                            />
                            <KPIDialog
                               isOpen={this.state.isEditDialogOpen}
@@ -369,18 +357,8 @@ export default class Teams extends Component {
                   }
                />
                <Tabs.Expander />
-               {this.renderControlls()}
             </Tabs>
          </div>
       );
    }
 }
-/**
-  * 
-  * 
-    <Button icon='annotation' minimal small></Button>
-    <Button icon='dashboard' minimal small></Button>
-    <Button icon='eye-open' minimal small></Button>
-  * 
-  * 
-  */

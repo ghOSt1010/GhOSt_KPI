@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-   Card,
    Icon,
    H3,
    ButtonGroup,
@@ -10,10 +9,6 @@ import {
    Classes,
    H5,
 } from '@blueprintjs/core';
-import CardHeader from '../../components/Card/CardHeader';
-import CardBody from '../../components/Card/CardBody';
-import CardFooter from '../../components/Card/CardFooter';
-import { Row, Col } from 'reactstrap';
 import NavigationCard from '../../components/Card/NavigationCard';
 import Tree from '../../components/Tree/Tree';
 import ProjectOptions from '../../components/Selects/ProjectOptions';
@@ -177,49 +172,40 @@ export default class Settings extends Component {
    render() {
       return (
          <div>
-            <Card elevation='2'>
-               <CardHeader>
-                  <Icon icon='cog' className='header-icon mr-2' />
-                  Settings v2
-               </CardHeader>
-               <CardBody className='p-0'>
-                  <Row className='m-0'>
-                     <Col xs='2' className='bp3-card-nav-panel '>
-                        <div>
-                           <ButtonGroup vertical alignText='left' minimal fill>
-                              <Button
-                                 icon='cog'
-                                 text='Profile'
-                                 small
-                                 onClick={() => this.setOpenTab('Profile')}
-                              />
-                              <Button
-                                 icon='cog'
-                                 text='Application'
-                                 small
-                                 onClick={() => this.setOpenTab('Application')}
-                              />
-                              <Button
-                                 icon='cog'
-                                 text='UI'
-                                 small
-                                 onClick={() => this.setOpenTab('UI')}
-                              />
-                           </ButtonGroup>
-                        </div>
-                     </Col>
-                     <Col xs='10' className='bp3-card-panel'>
-                        <CardBody>{this.getOpenTabContent()}</CardBody>
-                     </Col>
-                  </Row>
-               </CardBody>
-               <CardFooter>
-                  <div className='float-right'>v.0.0.1</div>
-               </CardFooter>
-            </Card>
             <NavigationCard
-               style={{ minHeight: 400 }}
                elevation='2'
+               icon='cog'
+               header='Settings Panel'
+               minHeight={200}
+               footer={<div>info-test</div>}
+               navigation={
+                  <ButtonGroup vertical alignText='left' minimal fill>
+                     <Button
+                        icon='cog'
+                        text='Profile'
+                        small
+                        onClick={() => this.setOpenTab('Profile')}
+                     />
+                     <Button
+                        icon='cog'
+                        text='Application'
+                        small
+                        onClick={() => this.setOpenTab('Application')}
+                     />
+                     <Button
+                        icon='cog'
+                        text='UI'
+                        small
+                        onClick={() => this.setOpenTab('UI')}
+                     />
+                  </ButtonGroup>
+               }
+               content={this.getOpenTabContent()}
+            />
+
+            <NavigationCard
+               elevation='2'
+               minHeight={350}
                header={
                   <div>
                      <Icon
@@ -241,6 +227,13 @@ export default class Settings extends Component {
                   </div>
                }
                content={this.getSelectedNodeElement()}
+               footer={
+                  <div>
+                     <Icon icon='cog' className='mr-2' />
+                     some info-test
+                     <div className='float-right'>asd</div>
+                  </div>
+               }
             />
          </div>
       );

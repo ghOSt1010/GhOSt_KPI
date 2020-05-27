@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Card, H2, Classes } from '@blueprintjs/core';
+import CardHeader from '../../components/Card/CardHeader';
+import CardFooter from '../../components/Card/CardFooter';
+import CardBody from '../../components/Card/CardBody';
 import Client from '../../Modules/Client/Client';
 
 export default class Home extends Component {
@@ -31,12 +34,8 @@ export default class Home extends Component {
                <Row>
                   <Col xl={12} lg={12} md={12} sm={12} xs={12} className='mt-3'>
                      <Card elevation='2'>
-                        <div className='bp3-card-header'>
-                           <div className='bp3-card-header-content'>
-                              Project info
-                           </div>
-                        </div>
-                        <div className='card-body'>
+                        <CardHeader icon='home' headerText='Project Info' />
+                        <CardBody>
                            <h4>This application is created for KPI analysis</h4>
                            <hr />
                            <h5 className={Classes.TEXT_MUTED}>
@@ -46,7 +45,8 @@ export default class Home extends Component {
                            <h5 className={Classes.TEXT_MUTED}>
                               Author: Rafal Cymbalista
                            </h5>
-                        </div>
+                        </CardBody>
+                        <CardFooter>footer test</CardFooter>
                      </Card>
                   </Col>
                </Row>

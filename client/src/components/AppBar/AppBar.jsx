@@ -14,6 +14,7 @@ import UIManager from '../../Modules/UIManager/UIManager';
 import Client from '../../Modules/Client/Client';
 import AboutAppDialog from './components/AboutAppDialog';
 import './AppBar.css';
+import Clock from './components/Clock';
 
 export default class AppBar extends Component {
    constructor(props) {
@@ -27,6 +28,10 @@ export default class AppBar extends Component {
       };
       this.switchTheme = this.switchTheme.bind(this);
       this.handleLogout = this.handleLogout.bind(this);
+   }
+
+   componentWillUnmount() {
+      clearInterval(this.intervalID);
    }
 
    handleOpen() {
@@ -79,7 +84,7 @@ export default class AppBar extends Component {
             />
          </Menu>
       );
-
+      const { time, timerVisible } = this.state;
       return (
          <div>
             <Navbar
@@ -94,6 +99,7 @@ export default class AppBar extends Component {
             >
                <Navbar.Group align={Alignment.LEFT}>GhOSt App</Navbar.Group>
                <Navbar.Group align={Alignment.RIGHT}>
+                  <Clock />
                   <Popover
                      content={rightMenu}
                      position={Position.BOTTOM}

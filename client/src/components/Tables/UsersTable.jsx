@@ -9,7 +9,7 @@ export default class UsersTable extends Component {
          { text: 'User name' },
          { text: 'Email' },
          { text: 'Role' },
-         { text: 'Active', center: true },
+         { text: 'Active', center: false },
       ],
    };
 

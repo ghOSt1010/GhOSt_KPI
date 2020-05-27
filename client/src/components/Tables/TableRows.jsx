@@ -3,9 +3,14 @@ import React, { Component } from 'react';
 import TableCell from './TableCell';
 
 export default class TableRows extends Component {
+   state = {
+      selected: false,
+   };
+
    handleSelection(e, row) {
       e.preventDefault();
-      this.props.onSelection(row, false);
+      this.props.handleSelection(e, row);
+      this.setState({ selected: row._id });
    }
 
    renderTableRows() {
@@ -14,12 +19,12 @@ export default class TableRows extends Component {
          return (
             <tr
                key={key}
-               onClick={e => this.handleSelection(e, row)}
+               onClick={(e) => this.handleSelection(e, row)}
                className={` ${
-                  this.props.selected === row._id ? 'bg-selected' : ''
+                  this.state.selected === row._id ? 'bg-selected' : ''
                }`}
             >
-               {this.renderCells()}
+               {this.renderCells(row, key)}
             </tr>
          );
       });
@@ -27,21 +32,15 @@ export default class TableRows extends Component {
    getKeys() {
       return Object.keys(this.props.rows[0]);
    }
-   renderCells() {
-      const { rows } = this.props.rows;
-      var keys = this.getKeys();
-      return rows.map((row, index) => {
-         return <TableCell key={index} data={row} keys={keys} />;
-      });
 
-      /*var r = [];
-      for (let [key, value] of Object.entries(row)) {
-         r.push(<TableCell value={value} />);
-      }
-      return r.map(th => {
-         return th;
+   renderCells(row, key) {
+      let keys = this.getKeys();
+      return Object.keys(row).map((value, index) => {
+         if (value !== '_id' && value !== '__v') {
+            return <TableCell value={row[keys[index]]} />;
+         }
+         return null;
       });
-      */
    }
 
    render() {
@@ -50,5 +49,5 @@ export default class TableRows extends Component {
 }
 
 TableRows.defaultProps = {
-   rows: []
+   rows: [],
 };
