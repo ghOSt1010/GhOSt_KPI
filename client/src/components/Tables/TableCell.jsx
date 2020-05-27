@@ -17,7 +17,7 @@ export default class TableCell extends Component {
 
             return value.toFixed(1) + '%';
          }
-         return new Number(value).toFixed(0);
+         return value.toFixed(0);
       }
 
       //date parsing

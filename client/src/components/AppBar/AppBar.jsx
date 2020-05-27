@@ -84,7 +84,7 @@ export default class AppBar extends Component {
             />
          </Menu>
       );
-      const { time, timerVisible } = this.state;
+
       return (
          <div>
             <Navbar

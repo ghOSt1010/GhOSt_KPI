@@ -6,7 +6,7 @@ export default class Clock extends Component {
       time: '',
       timerVisible: false,
    };
-   componentWillMount() {
+   componentDidMount() {
       this.intervalID = setInterval(() => this.getTime(), 1000);
    }
    getTime() {

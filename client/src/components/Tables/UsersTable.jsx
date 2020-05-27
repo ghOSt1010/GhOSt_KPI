@@ -6,10 +6,11 @@ export default class UsersTable extends Component {
    state = {
       selected: '',
       headers: [
-         { text: 'User name' },
+         { text: 'Active' },
          { text: 'Email' },
          { text: 'Role' },
-         { text: 'Active', center: false },
+         { text: 'Active' },
+         { text: 'Type' },
       ],
    };
 
@@ -30,7 +31,7 @@ export default class UsersTable extends Component {
                <TableCell value={user.username} />
                <TableCell value={user.email} />
                <TableCell value={user.usertype} />
-               <TableCell value={user.active} center />
+               <TableCell value={user.active} />
             </tr>
          );
       });
@@ -53,11 +54,11 @@ export default class UsersTable extends Component {
    render() {
       return (
          <Table
-            headers={this.state.headers}
-            rows={this.renderTableRows()}
+            data={this.props.usersData}
             errorMsg={this.props.errorMsg}
             isLoading={this.props.isLoading}
             onRefresh={this.props.onRefresh}
+            removeColumns={['hash', 'salt']}
          />
       );
    }

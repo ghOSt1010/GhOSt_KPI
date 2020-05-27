@@ -22,29 +22,25 @@ export default class Table extends Component {
       return s.charAt(0).toUpperCase() + s.slice(1);
    };
 
-   renderTableHeader() {
-      if (this.props.headers) {
-         let headers = this.props.headers.map((p) => {
-            if (p !== '_id' && p !== '__v') {
-               return {
-                  text: p.text,
-                  center: p.center,
-               };
-            }
-            return undefined;
-         });
-         return <TableHeaders headers={headers} />;
+   __canRenderHeaders(value) {
+      let not = ['_id', '__v'];
+      not.push(this.props.removeHeaders);
+      not = not.flat();
+      for (let i = 0; i < not.length; i++) {
+         if (value === not[i]) return false;
       }
-      let headers = Object.keys(this.props.data[0]).map((p) => {
-         if (p !== '_id' && p !== '__v') {
-            return {
-               text: this.__capitalize(p.replace('_', ' ')),
-               center: false,
-            };
-         }
-         return undefined;
-      });
-      return <TableHeaders headers={headers} />;
+      return true;
+   }
+
+   renderTableHeader() {
+      return (
+         <TableHeaders
+            headers={
+               this.props.headers ? this.props.headers : this.props.data[0]
+            }
+            removeHeaders={this.props.removeColumns}
+         />
+      );
    }
 
    renderTableBody() {
@@ -59,6 +55,7 @@ export default class Table extends Component {
          <TableRows
             rows={this.props.data}
             handleSelection={this.props.handleSelection}
+            removeRows={this.props.removeColumns}
          />
       );
    }
@@ -92,8 +89,14 @@ export default class Table extends Component {
          this.renderNonIdealState('Something went wrong', 'Cannot load table');
       }
 
-      if (this.props.data.length === 0 && this.props.rows.length === 0) {
-         return this.renderNonIdealState('There are no items to display');
+      if (!this.props.data && this.props.rows) {
+         if (this.props.rows.length === 0)
+            return this.renderNonIdealState('There are no items to display');
+      }
+
+      if (this.props.data && !this.props.rows) {
+         if (this.props.data.length === 0)
+            return this.renderNonIdealState('There are no items to display');
       }
 
       return (
@@ -153,6 +156,7 @@ const _void = () => {
 };
 
 Table.defaultProps = {
+   //rows: [],
    data: [],
    striped: true,
    errorMsg: '',
